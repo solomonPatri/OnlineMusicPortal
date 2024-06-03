@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace OnlineMusicPortal.ClaseMusic
 {
-    internal class Role
+    internal class Role:User
     {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

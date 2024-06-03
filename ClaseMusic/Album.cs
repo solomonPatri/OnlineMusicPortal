@@ -8,5 +8,33 @@ namespace OnlineMusicPortal.ClaseMusic
 {
     internal class Album
     {
+        private string _name;
+        private string _dataiesire;
+        List<Music> _music;
+
+
+
+
+        
+
+
+       
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
