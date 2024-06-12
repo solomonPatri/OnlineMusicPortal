@@ -7,48 +7,60 @@ using OnlineMusicPortal.ClaseMusic;
 
 namespace OnlineMusicPortal.Service
 {
-    internal class ServiceMusic
+    public class ServiceMusic
     {
-        private List<Music> _music;
-        private string _filepath;
+        public List<Music> _melodii;
+        private string _filePath;
 
         public ServiceMusic()
         {
-            _music = new List<Music>();
-            this._filepath = GetDirectory();
+            _melodii = new List<Music>();
+            _filePath = GetDirectory();
             load();
 
-
         }
-        public String GetDirectory()
+        private string GetDirectory()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
-            string dataFolder = Path.Combine(currentDirectory,"data");
-            string filepath = Path.Combine(dataFolder, "Music.txt");
+            string dataFolder = Path.Combine(currentDirectory, "data");
+            string filepath = Path.Combine(currentDirectory, "Music.txt");
+
             return filepath;
+
+
         }
+
         public void load()
         {
             try
             {
-                using (StreamReader sr = new StreamReader(this._filepath))
+                using (StreamReader sr = new StreamReader(_filePath))
                 {
                     string line = " ";
-                    while((line = sr.ReadLine())!= null)
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        Console.WriteLine(line.Split(','));  ;
-                        switch(line.Split(" , ")[0])
+
+                        switch (line.Split(",")[0])
                         {
+
                             case "Pop":
+
+                                Pop pop = new Pop(line);
+                                _melodii.Add(pop);
 
                                 break;
                             case "Rock":
+                                Rock rock = new Rock(line);
+                                _melodii.Add(rock);
+                                break;
+                            case "Opera":
+                                Opera opera = new Opera(line);
+                                _melodii.Add(opera);
+                                break;
+
+                            default:
 
                                 break;
-                            case "Relax":
-
-                                break;
-
 
 
 
@@ -57,18 +69,22 @@ namespace OnlineMusicPortal.Service
 
 
 
+
+
                     }
-
-
 
 
                 }
 
 
-            }catch (Exception e)
-            {
-                Console.WriteLine (e.Message);
+
+
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
 
 
 
@@ -79,13 +95,30 @@ namespace OnlineMusicPortal.Service
 
         public void Afisare()
         {
-            for(int i =0;i< _music.Count;i++)
+            for (int i = 0; i < _melodii.Count; i++)
             {
-                Console.WriteLine(_music[i].Descriere());
+                Console.WriteLine(_melodii[i].Descriere());
 
             }
 
         }
+
+
+        public Music GEtMelodyById(int id)
+        {
+            for(int i = 0; i < _melodii.Count; i++)
+            {
+                if (_melodii[i].Id.Equals(id)){
+
+                    return _melodii[i]; 
+                }
+
+            }
+            return null;
+
+        }
+
+
 
 
 

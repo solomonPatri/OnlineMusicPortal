@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineMusicPortal.ClaseleUlterioare;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace OnlineMusicPortal.ClaseMusic
 {
-    internal class Music
+    public class Music
     {
         private string _type;
         private int _id;
         private int _albumId;
-        private string _description;
+        private string _namesong;
+      
 
 
        public Music(string Propietati)
@@ -20,14 +22,14 @@ namespace OnlineMusicPortal.ClaseMusic
             this._type = cuvinte[0];
             this._id = int.Parse(cuvinte[1]);
             this._albumId = int.Parse(cuvinte[2]);
-            this._description = cuvinte[3];
+            this._namesong = cuvinte[3];
         }
-        public Music(string type,int _id,int albumId,string Description)
+        public Music(string type,int _id,int albumId,string namesong)
         {
             this._type = type;
             this._id = _id;
             this._albumId = albumId;
-            this._description=Description;
+            this._namesong=namesong;
 
         }
         public Music()
@@ -50,10 +52,10 @@ namespace OnlineMusicPortal.ClaseMusic
             set { _type = value; }
         }
 
-        public string Description
+        public string Namesong
         {
-            get { return _description; }
-            set { _description = value; }
+            get { return _namesong; }
+            set { _namesong = value; }
         }
 
 
@@ -61,7 +63,7 @@ namespace OnlineMusicPortal.ClaseMusic
         {
             string text = " ";
             text += "Type: " + this.Type + "\n";
-            text += "Description: " + this.Description + "\n";
+            text += "Name Song: " + this.Namesong + "\n";
             return text;
         }
 

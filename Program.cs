@@ -1,5 +1,4 @@
-﻿using OnlineMusicPortal.ClaseMusic;
-using OnlineMusicPortal.Service;
+﻿using OnlineMusicPortal.Service;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,11 +12,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-
-        ServiceMusic music= new ServiceMusic();
-        music.Afisare();
-
-
+        ServiceMusic music = new ServiceMusic();
+        
+      
+        
 
 
 

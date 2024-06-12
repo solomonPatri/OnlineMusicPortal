@@ -3,40 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineMusicPortal.ClaseMusic;
 
-namespace OnlineMusicPortal.ClaseMusic
+namespace OnlineMusicPortal.ClaseleUlterioare
 {
-    internal class Singer:Music
+    internal class Singer : Music
     {
         private int _id;
         private string _name;
         private string _mobile;
         private string _email;
         private string _adress;
-       
+
         public Singer(string Propietati) : base(Propietati)
         {
             string[] cuvinte = Propietati.Split(',');
-            this._id = int.Parse(cuvinte[4]);
-            this._name= cuvinte[5];
-            this._email = cuvinte[6];
-            this._adress = cuvinte[7];
-            this._mobile = cuvinte[8];
+            _id = int.Parse(cuvinte[4]);
+            _name = cuvinte[5];
+            _email = cuvinte[6];
+            _adress = cuvinte[7];
+            _mobile = cuvinte[8];
         }
 
-        public Singer(int id, string name, string mobile, string email, string adress):base () { 
+        public Singer(int id, string name, string mobile, string email, string adress) : base()
+        {
 
             Id = id;
             Name = name;
             Mobile = mobile;
             Email = email;
             Adress = adress;
-           
+
         }
 
-        public int Id { 
+        public int Id
+        {
             get { return _id; }
-            set { _id = value; } 
+            set { _id = value; }
         }
 
         public string Name
@@ -66,21 +69,21 @@ namespace OnlineMusicPortal.ClaseMusic
 
         public override string Descriere()
         {
-            string text = " "+base.Descriere();
-            text+= "Singer Name: " + this.Name + "\n";
-            text += "Email:" + this.Email + "\n";
-            text += "Mobile: " + this.Mobile + "\n";
-            text += "Adress: " + this.Adress + "\n";
+            string text = " " + base.Descriere();
+            text += "Singer Name: " + Name + "\n";
+            text += "Email:" + Email + "\n";
+            text += "Mobile: " + Mobile + "\n";
+            text += "Adress: " + Adress + "\n";
             return text;
 
         }
-        public  string DescriereSinger()
+        public string DescriereSinger()
         {
             string text = " ";
-          text += "Singer Name: " + this.Name + "\n";
-            text += "Email:" + this.Email + "\n";
-            text += "Mobile: " + this.Mobile + "\n";
-            text += "Adress: " + this.Adress + "\n";
+            text += "Singer Name: " + Name + "\n";
+            text += "Email:" + Email + "\n";
+            text += "Mobile: " + Mobile + "\n";
+            text += "Adress: " + Adress + "\n";
             return text;
 
         }
