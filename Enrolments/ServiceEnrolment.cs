@@ -22,13 +22,13 @@ namespace OnlineMusicPortal.Enrolments
         public void load()
         {
 
-            Enrolment e1 = new Enrolment(GenerateIdUnique(), 17945, 1);
-            Enrolment e2 = new Enrolment(GenerateIdUnique(), 90, 2);
-            Enrolment e3 = new Enrolment(GenerateIdUnique(), 88, 3);
-            Enrolment e4 = new Enrolment(GenerateIdUnique(), 86, 5);
-            Enrolment e5 = new Enrolment(GenerateIdUnique(), 92, 4);
-            Enrolment e6 = new Enrolment(GenerateIdUnique(), 210, 6);
-            Enrolment e7 = new Enrolment(GenerateIdUnique(), 195, 2);
+            Enrolment e1 = new Enrolment(GenerateIdUnique(), 13, 25,20);
+            Enrolment e2 = new Enrolment(GenerateIdUnique(), 10, 25,24);
+            Enrolment e3 = new Enrolment(GenerateIdUnique(), 15, 3,20);
+            Enrolment e4 = new Enrolment(GenerateIdUnique(), 16, 25,20);
+            Enrolment e5 = new Enrolment(GenerateIdUnique(), 19, 4,27);
+            Enrolment e6 = new Enrolment(GenerateIdUnique(), 17, 25,26);
+            Enrolment e7 = new Enrolment(GenerateIdUnique(), 11, 2,20);
 
             _enrolments.Add(e1);
             _enrolments.Add(e2);
@@ -117,7 +117,7 @@ namespace OnlineMusicPortal.Enrolments
             return enrol;
 
         }
-        public List<int> GetALlAlbumsBySinegrId(List<int> SingerId)
+        public List<int> GetALlAlbumsBySingerId(List<int> SingerId)
         {
 
             List<int> IdALbum = new List<int>();
@@ -150,7 +150,22 @@ namespace OnlineMusicPortal.Enrolments
 
         }
 
+        public List<int> GetAllConcerteEnrolBySingerId(int SingerId)
+        {
+            List<int> enrol = new List<int>();
+            for (int i = 0; i < _enrolments.Count; i++)
+            {
+                if (SingerId == _enrolments[i].SingerId)
+                {
+                    enrol.Add(_enrolments[i].IdConcerte);
 
+                }
+
+
+            }
+            return enrol;
+
+        }
 
 
 

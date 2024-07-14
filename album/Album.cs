@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineMusicPortal.ClaseMusic;
 
-namespace OnlineMusicPortal.ClaseleUlterioare
+namespace OnlineMusicPortal.album
 {
-    internal class Album
+    public  class Album
     {
         private int _albumId;
         private string _name;
         private string _dataiesire;
-        
 
-        public Album(int idalbum,string name, string Dataiesire)
+
+
+        public Album(int idalbum, string name, string Dataiesire)
         {
             _albumId = idalbum;
             _name = name;
@@ -39,7 +40,7 @@ namespace OnlineMusicPortal.ClaseleUlterioare
             set { _dataiesire = value; }
         }
 
-        public string Descriere()
+        public string DescriereAlbum()
         {
             string text = " ";
             text += "Album name: " + Name + "\n";

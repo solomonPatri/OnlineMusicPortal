@@ -5,30 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineMusicPortal.ClaseMusic;
 
-namespace OnlineMusicPortal.ClaseleUlterioare
+namespace OnlineMusicPortal.Utilizatori
 {
-    internal class Singer : Music
+    internal class Singer:User
     {
         private int _id;
         private string _name;
         private string _mobile;
-        private string _email;
         private string _adress;
+        private int _age;
 
         public Singer(string Propietati) : base(Propietati)
         {
             string[] cuvinte = Propietati.Split(',');
             _id = int.Parse(cuvinte[4]);
             _name = cuvinte[5];
-            _email = cuvinte[6];
+            _mobile = cuvinte[6];
             _adress = cuvinte[7];
-            _mobile = cuvinte[8];
-        }
+            _age = int.Parse(cuvinte[8]);
 
-        public Singer(int id, string name, string mobile, string email, string adress) : base()
+        }
+        public Singer(int idUser,string email,string pass,string type,int idSinger,string name,string mobile,string adress,int age) : base(idUser,email,pass,"Singer")
         {
 
-            Id = id;
+            Id = idSinger;
             Name = name;
             Mobile = mobile;
             Email = email;
@@ -54,36 +54,35 @@ namespace OnlineMusicPortal.ClaseleUlterioare
             set { _mobile = value; }
         }
 
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
-
         public string Adress
         {
             get { return _adress; }
             set { _adress = value; }
         }
-
+        public int Age
+        {
+            get { return Age;}
+            set { Age = value; }
+        }
 
         public override string Descriere()
         {
             string text = " " + base.Descriere();
             text += "Singer Name: " + Name + "\n";
-            text += "Email:" + Email + "\n";
             text += "Mobile: " + Mobile + "\n";
             text += "Adress: " + Adress + "\n";
+            text += "Age: " + Age + "\n";
             return text;
 
         }
-        public string DescriereSinger()
+        public  string DescriereSinger()
         {
             string text = " ";
+            text += "IdSinger: " + "\n";
             text += "Singer Name: " + Name + "\n";
-            text += "Email:" + Email + "\n";
             text += "Mobile: " + Mobile + "\n";
             text += "Adress: " + Adress + "\n";
+            text += "Age: " + Age + "\n";
             return text;
 
         }
