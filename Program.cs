@@ -11,19 +11,17 @@ using OnlineMusicPortal.ClaseMusic;
 using OnlineMusicPortal.view_urile;
 using OnlineMusicPortal.Utilizatori;
 using OnlineMusicPortal.Enrolments;
+using OnlineMusicPortal.EnrolmentFollower;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        
+        ViewLogin viewLogin = new ViewLogin();
+        viewLogin.Play();
 
-        Singer singer = new Singer(86, "lisasmith321@gmail.com", "321lisa", "Singer", 25, "Lisa", "0089765432", "Green Street", 12);
 
-        ViewSinger view = new ViewSinger(singer);
 
-        view.play();
-        
 
 
 

@@ -9,7 +9,6 @@ namespace OnlineMusicPortal.Utilizatori
 {
     internal class Singer:User
     {
-        private int _id;
         private string _name;
         private string _mobile;
         private string _adress;
@@ -18,30 +17,33 @@ namespace OnlineMusicPortal.Utilizatori
         public Singer(string Propietati) : base(Propietati)
         {
             string[] cuvinte = Propietati.Split(',');
-            _id = int.Parse(cuvinte[4]);
-            _name = cuvinte[5];
-            _mobile = cuvinte[6];
-            _adress = cuvinte[7];
-            _age = int.Parse(cuvinte[8]);
+            _name = cuvinte[4];
+            _mobile = cuvinte[5];
+            _adress = cuvinte[6];
+            _age = int.Parse(cuvinte[7]);
 
         }
-        public Singer(int idUser,string email,string pass,string type,int idSinger,string name,string mobile,string adress,int age) : base(idUser,email,pass,"Singer")
+        public Singer(string type, int idSinger, string email, string pass, string name, string mobile, string adress, int age) : base("Singer", idSinger, email, pass)
+        {
+            _name = name;
+            _mobile = mobile;
+            _adress = adress;
+            _age = age;
+
+        }
+        public Singer(string name,string mobile,string adress,int age)
+        {
+            this._name = name;
+            this._mobile = mobile;
+            this._adress = adress;
+            this._age = age;
+        }
+        public Singer()
         {
 
-            Id = idSinger;
-            Name = name;
-            Mobile = mobile;
-            Email = email;
-            Adress = adress;
 
         }
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
+        
         public string Name
         {
             get { return _name; }
@@ -61,8 +63,8 @@ namespace OnlineMusicPortal.Utilizatori
         }
         public int Age
         {
-            get { return Age;}
-            set { Age = value; }
+            get { return _age;}
+            set { _age = value; }
         }
 
         public override string Descriere()
@@ -78,7 +80,6 @@ namespace OnlineMusicPortal.Utilizatori
         public  string DescriereSinger()
         {
             string text = " ";
-            text += "IdSinger: " + "\n";
             text += "Singer Name: " + Name + "\n";
             text += "Mobile: " + Mobile + "\n";
             text += "Adress: " + Adress + "\n";

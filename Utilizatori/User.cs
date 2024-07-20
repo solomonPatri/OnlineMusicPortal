@@ -21,7 +21,7 @@ namespace OnlineMusicPortal.Utilizatori
             _email = cuvinte[2];
             _password = cuvinte[3];
         }
-        public User(int id,string email,string password,string type)
+        public User(string type,int id,string email,string password)
         {
             this._id = id;
             this._email= email;
@@ -30,10 +30,17 @@ namespace OnlineMusicPortal.Utilizatori
 
         }
 
+        public User(int id)
+        
+        {
+            this._id = id;
+
+        }
         public User()
         {
 
         }
+
 
         public int Id
         {

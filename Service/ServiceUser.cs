@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OnlineMusicPortal.Utilizatori;
 
@@ -22,11 +24,13 @@ namespace OnlineMusicPortal.Service
 
         public void load()
         {
+          
             try
             {
                 using (StreamReader sr = new StreamReader(_filePath))
                 {
                     string line = " ";
+
 
                     while ((line = sr.ReadLine()) != null)
                     {
@@ -39,17 +43,20 @@ namespace OnlineMusicPortal.Service
 
                                 Singer singer = new Singer(line);
                                 _users.Add(singer);
+                                
                                 break;
 
 
                             case "Follower":
-                              Follower follower = new Follower(line);   
+                                Follower follower = new Follower(line);
                                 _users.Add(follower);
+                           
                                 break;
 
                             case "Admin":
                                 Admin admin = new Admin(line);
                                 _users.Add(admin);
+                             
                                 break;
 
                             default:
@@ -58,9 +65,12 @@ namespace OnlineMusicPortal.Service
                         }
 
 
+                        
+
+
                     }
 
-
+                
 
                 }
 
@@ -89,12 +99,12 @@ namespace OnlineMusicPortal.Service
         public User GetUserById(int id)
         {
             List<User> users = _users;
-           for(int i=0;i<users.Count; i++)
+            for (int i = 0; i < users.Count; i++)
             {
                 if ((users[i] as Singer).Id.Equals(id) || (users[i] as Follower).Id.Equals(id))
                 {
                     return users[i];
-                } 
+                }
 
 
 
@@ -127,7 +137,7 @@ namespace OnlineMusicPortal.Service
         public void AfisareFollower()
         {
 
-            for(int i=0;i < _users.Count; i++)
+            for (int i = 0; i < _users.Count; i++)
             {
                 if (_users[i] is Follower)
                 {
@@ -178,12 +188,12 @@ namespace OnlineMusicPortal.Service
             return null;
         }
 
-        public User GetSpecificUser(string username,string password)
+        public User GetSpecificUser(string username, string password)
         {
             User user = GetUserByDate(username, password);
-            for(int i=0;i< _users.Count; i++)
+            for (int i = 0; i < _users.Count; i++)
             {
-                if((user as Singer).Email.Equals(_users[i].Email) && (user as Singer).Password.Equals(_users[i].Password)) {
+                if ((user as Singer).Email.Equals(_users[i].Email) && (user as Singer).Password.Equals(_users[i].Password)) {
 
                     Singer singer = _users[i] as Singer;
                     return singer;
@@ -230,11 +240,68 @@ namespace OnlineMusicPortal.Service
 
         }
 
+        public Singer GetSingerByName(string name)
+        {
+            Singer singer = new Singer();
+            for (int i = 0; i < _users.Count; i++)
+            {
+                if ((_users[i] as Singer).Name.Equals(name))
+                {
+                    singer = (_users[i] as Singer);
+
+                }
+
+
+
+            }
+
+            return singer;
+
+
+
+        }
+
+        public Follower GetFollowersByName(string name)
+        {
+            Follower follower = new Follower();
+            for (int i = 0; i < _users.Count; i++)
+            {
+                if ((_users[i] as Follower).Name.Equals(name))
+                {
+                    follower = (_users[i] as Follower);
+
+
+
+                }
+
+
+            }
+            return follower;
 
 
 
 
+        }
 
+        public List<Singer> ReturnSingersById(List<int> idsinger)
+        {
+            List<Singer> singers = new List<Singer>();
+
+            for (int i = 0; i < _users.Count; i++)
+            {
+                if (idsinger.Contains(_users[i].Id))
+                {
+                    singers.Add(_users[i] as Singer);
+                }
+            }
+            return singers;
+
+
+
+        }
+
+
+    
 
 
 

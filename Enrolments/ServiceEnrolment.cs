@@ -167,7 +167,22 @@ namespace OnlineMusicPortal.Enrolments
 
         }
 
+        public List<int> GetALbumBySingerId(int SingerId)
+        {
+            List<int> albumele = new List<int>();
+            for(int i=0;i< _enrolments.Count; i++)
+            {
+                if (_enrolments[i].SingerId.Equals(SingerId))
+                {
+                    albumele.Add(_enrolments[i].AlbumId);
+                    
 
+
+                }
+            }
+            return albumele;
+
+        }
 
 
 

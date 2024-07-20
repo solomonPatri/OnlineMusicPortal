@@ -199,7 +199,7 @@ namespace OnlineMusicPortal.Service
 
         }
 
-        public List<Music> GetMusicByAlbumId(int IdAlbum)
+        public List<Music> FiltrareMusicByAlbumId(int IdAlbum)
         {
             List<Music> musics = new List<Music>();
             for (int i = 0; i < _melodii.Count; i++)
@@ -223,9 +223,121 @@ namespace OnlineMusicPortal.Service
 
         }
 
+        public List<Music> ListaMusic(int idAlbum)
+        {
+            List<Music> melodii = FiltrareMusicByAlbumId(idAlbum);
+            for (int i = 0; i < melodii.Count; i++)
+            {
+                Console.WriteLine(melodii[i].Descriere());
+
+            }
+
+            return melodii;
+
+
+        }
+
+
+        public bool deleteMusic(string name, int idAlbum)
+        {
+
+            List<Music> melodii = ListaMusic(idAlbum);
+            for (int i = 0; i < melodii.Count; i++)
+            {
+                if (melodii[i].Namesong.Equals(name))
+                {
+                    _melodii.Remove(melodii[i]);
+                    return true;
+
+                }
+
+
+            }
+            return false;
+
+        }
+
+        public List<Music> GetAllMelodyByIdAlbums(List<int> idsalbum) {
+
+            List<Music> melodiile = new List<Music>();
+            for (int i = 0; i < _melodii.Count; i++)
+            {
+                if (idsalbum.Contains(_melodii[i].AlbumId))
+                {
+
+                    melodiile.Add(_melodii[i]);
+
+
+                }
 
 
 
+            }
+            return melodiile;
+
+
+
+
+
+
+
+        }
+
+        public List<Music> GetAllSongsByFenrol(List<int> ids)
+        {
+            List<Music> songs = new List<Music>();
+            for (int i = 0; i < _melodii.Count; i++)
+            {
+                if (ids.Contains(_melodii[i].Id)) {
+
+                    songs.Add(_melodii[i]);
+
+                }
+            }
+
+            return songs;
+
+
+
+        }
+
+        public List<int> GetIdSongByFenrol(List<Music> songs)
+        {
+            List<int> ids = new List<int>();
+            for (int i = 0; i < _melodii.Count; i++)
+            {
+                if (_melodii[i].Id == songs[i].Id)
+                {
+                    ids.Add(_melodii[i].Id);
+
+
+                }
+
+
+            }
+            return ids;
+
+
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 

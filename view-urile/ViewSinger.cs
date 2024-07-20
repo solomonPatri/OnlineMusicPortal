@@ -9,6 +9,7 @@ using OnlineMusicPortal.album;
 using OnlineMusicPortal.Service;
 using System.Runtime.CompilerServices;
 using OnlineMusicPortal.concerte;
+using OnlineMusicPortal.ClaseMusic;
 
 namespace OnlineMusicPortal.view_urile
 {
@@ -43,6 +44,8 @@ namespace OnlineMusicPortal.view_urile
             Console.WriteLine("5->Adaugare Concert");
             Console.WriteLine("6->Modificare Album");
             Console.WriteLine("7->Stergere Melodie");
+            Console.WriteLine("8->Deconectare");
+
 
 
         }
@@ -74,7 +77,12 @@ namespace OnlineMusicPortal.view_urile
                     case 6:
                         ModificareAlbum();
                         break;
-
+                    case 7:
+                        StergereMelodii();
+                        break;
+                    case 8:
+                        run = false;
+                        break;
 
                 }
 
@@ -112,11 +120,11 @@ namespace OnlineMusicPortal.view_urile
 
             Album album = _servicealbum.GetALbumByName(namealbum);
 
-            var list = _servicemusic.GetMusicByAlbumId(album.AlbumId);
+            List<Music> songs = _servicemusic.ListaMusic(album.AlbumId);
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < songs.Count ; i++)
             {
-                Console.WriteLine(list[i].Descriere());
+                Console.WriteLine(songs[i].Descriere());
             }
 
 
@@ -220,6 +228,44 @@ namespace OnlineMusicPortal.view_urile
 
 
         }
+
+        public void StergereMelodii()
+        {
+            
+            string name= Console.ReadLine();
+            List<int> albume = _serviceEnrolment.GetALbumBySingerId(_singer.Id);
+            List<Music> melodiile = _servicemusic.GetAllMelodyByIdAlbums(albume);
+            Console.WriteLine("Melodiile sunt: " + "\n");
+            for(int i=0;i<melodiile.Count;i++)
+            {
+                Console.WriteLine(melodiile[i].Descriere());
+
+            }
+            Console.WriteLine("Introduceti melodia care doriti sa stergeti:");
+
+            bool verificare = _servicemusic.VerificareSong(name);
+
+            if(verificare)
+            {
+                Music melodii = _servicemusic.GetSongByName(name);
+                _servicemusic.deleteMusic(name, melodii.AlbumId);
+                Console.WriteLine("Sa sters cu succes");
+                Console.WriteLine("Acuma melodiile sunt:");
+                _servicemusic.Afisare();
+            }
+            else
+            {
+                Console.WriteLine("A fost o problema posibil sa nue existe melodiia.");
+            }
+
+
+
+
+        }
+       
+
+
+
 
 
 

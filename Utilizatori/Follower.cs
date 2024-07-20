@@ -10,36 +10,41 @@ namespace OnlineMusicPortal.Utilizatori
 {
     internal class Follower:User
     {
-        private int _id;
+       
         private string _name;
         private int _followYear;
+
         
         public Follower(string Propietati): base(Propietati)
         {
             string[] cuvinte = Propietati.Split(",");
-            _id = int.Parse(cuvinte[4]);
-            _name = cuvinte[5];
-            _followYear = int.Parse(cuvinte[6]);
+            
+            _name = cuvinte[4];
+            _followYear = int.Parse(cuvinte[5]);
 
         }
-        public Follower (int idUser, string email,string pass,string type,int idFoll, string name, int followYear) : base(idUser, email, pass, "Follower")
+        public Follower (string type,int idUser, string email,string pass, string name, int followYear) : base("Follower",idUser,email,pass)
         {
-            this._id = idFoll;
+          
             this._name = name;
             this._followYear = followYear;
 
         }
 
+        public Follower(int Id,string name,int yearFoll):base(Id)
+        {
+          
+            this._name = name;
+            this._followYear = yearFoll;
+
+
+        }
         public Follower()
         {
 
-        }
 
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
         }
+       
         public string Name
         {
             get { return _name; }
@@ -63,7 +68,7 @@ namespace OnlineMusicPortal.Utilizatori
         public  string DescriereFollower()
         {
             string text = " " ;
-            text += "Id: " + "\n" ;
+            
             text += "Follower name: " + Name + "\n";
             text += "Follow Year: " + FollowYear + "\n";
             return text;
